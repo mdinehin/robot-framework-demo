@@ -88,6 +88,7 @@ As another option, use the Run feature in PyCharm to execute tests.
 - [BuiltIn](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html): An always available standard library with often needed keywords.
 - [Collections](https://robotframework.org/robotframework/latest/libraries/Collections.html): Library providing keywords for handling lists and dictionaries.
 - [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html): Library supporting browser automation.
-- [RequestsLibrary](https://marketsquare.github.io/robotframework-requests/doc/RequestsLibrary.html): Library aimed to provide HTTP api testing functionalities.
 - [XPath Cheat Sheet](https://gist.github.com/jmaccabee/550a0b9fcfdc7e6b170cd34c6ec7bc56#file-xpath-cheat-sheet): Common XPath tips and tricks.
+- [RequestsLibrary](https://marketsquare.github.io/robotframework-requests/doc/RequestsLibrary.html): Library aimed to provide HTTP api testing functionalities.
 - [Udemy: Robot Framework with Python](https://www.udemy.com/course/robot-framework-with-python-selenium/): In-depth on-demand video course.
+- [Pandas User Guide](https://pandas.pydata.org/docs/user_guide/): Documentation for the Python data analysis library.
