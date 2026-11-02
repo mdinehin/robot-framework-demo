@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This file manages the browser initialization and login process.
+Documentation    This file manages the browser initialization and user login process.
 Resource	../../GlobalSettings.robot
 
 *** Variables ***
@@ -13,7 +13,7 @@ Open Browser On [${CaptureModule}] Logout Form
 
 Open Browser And Log In With [${Username}] And [${Password}]
     Log In With [${Username}] And [${Password}]
-    Post Login Actions
+    Hande Post-Login Steps
 
 Log In With [${Username}] And [${Password}]
     [Tags]    robot:private
@@ -33,12 +33,12 @@ Log In With [${Username}] And [${Password}]
     Input Password    ${PasswordInput}    ${Password}
     Click Button    ${PasswordNextButton}
 
-Post Login Actions
+Hande Post-Login Steps
+    [Tags]    robot:private
     ${SecondsElapsed}=    Set Variable    0
     ${SecondsTimeout}=    Set Variable    60
-    ${MenuLogo}=    Set Variable    //img[@alt='RLDatix']
-    ${LoginProcessComplete}=    Set Variable    False
-    WHILE    ${LoginProcessComplete} == False
+    ${LoginProcessCompleted}=    Set Variable    False
+    WHILE    ${LoginProcessCompleted} == False
         # Increment the timer
         Sleep    1s
         ${SecondsElapsed}    Evaluate    ${SecondsElapsed} + 1
@@ -52,19 +52,13 @@ Post Login Actions
         # Case: Login message
         Handle Login Message
 
-        # Case: The user has successfully completed the login process
-        ${MenuVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${MenuLogo}
-        Run Keyword If    ${MenuVisible}    Set Global Variable    ${LoginProcessComplete}    True
+        # Case: Login process complete
+        ${LoginCompleted}=    Run Keyword And Return    Handle Completed Login Process
+        Run Keyword If    ${LoginCompleted}    Set Global Variable    ${LoginProcessCompleted}    True
 
         # Case: No page elements were identified within the specified timeframe
         Handle Login Timeout    ${SecondsElapsed}    ${SecondsTimeout}
     END
-
-Handle Login Timeout
-    [Tags]    robot:private
-    [Arguments]    ${SecondsElapsed}    ${SecondsTimeout}
-    Run Keyword If    ${SecondsElapsed} >= ${SecondsTimeout}
-    ...    Fail    Login succeeded, but there was an issue processing post-login actions.
 
 Handle Logged In Table
     [Tags]    robot:private
@@ -80,6 +74,19 @@ Handle User Agreement
     Run Keyword If    ${UserAgreementVisible}    Click Button    ${UserAgreementButton}
 
 Handle Login Message
+    [Tags]    robot:private
     ${LoginMessageButton}=    Set Variable    //button[text()='Click here to proceed' and ../../div[@id='url' and @class='authForm__panel']]
     ${LoginMessageVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${LoginMessageButton}
     Run Keyword If    ${LoginMessageVisible}    Click Button    ${LoginMessageButton}
+
+Handle Completed Login Process
+    [Tags]    robot:private
+    ${MenuLogo}=    Set Variable    //img[@alt='RLDatix']
+    ${MenuVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${MenuLogo}
+    Return From Keyword    ${MenuVisible}
+
+Handle Login Timeout
+    [Tags]    robot:private
+    [Arguments]    ${SecondsElapsed}    ${SecondsTimeout}
+    Run Keyword If    ${SecondsElapsed} >= ${SecondsTimeout}
+    ...    Fail    Login succeeded, but there was an issue processing post-login steps.
