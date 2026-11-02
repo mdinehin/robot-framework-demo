@@ -1,0 +1,15 @@
+/File Downloads/
+/Results/
+log.html
+output.xml
+report.html
+selenium-screenshot-*
+
+# JetBrains
+/.idea/
+
+# Visual Studio Code
+/.vscode/
+
+# Git Extensions mergetool backup files
+*.orig
