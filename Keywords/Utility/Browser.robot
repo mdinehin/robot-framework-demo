@@ -44,7 +44,7 @@ Hande Post-Login Steps
         ${SecondsElapsed}    Evaluate    ${SecondsElapsed} + 1
 
         # Case: Logged in table
-        Handle Logged In Table
+        Handle Logged-In Table
 
         # Case: User agreement modal
         Handle User Agreement
@@ -60,7 +60,7 @@ Hande Post-Login Steps
         Handle Login Timeout    ${SecondsElapsed}    ${SecondsTimeout}
     END
 
-Handle Logged In Table
+Handle Logged-In Table
     [Tags]    robot:private
     ${LoggedInTable}=    Set Variable    //table[@id='loggedin-table']
     ${ProceedButton}=    Set Variable    //button[text()='Click here to proceed']
