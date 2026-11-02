@@ -22,8 +22,6 @@ Set up your local development environment by following this Confluence guide cre
 
 [How-to setup environment](https://rldatix.atlassian.net/wiki/spaces/OP/pages/3223781706/How-to+setup+environment)
 
-Note: The only point where our installation process differs from Optima's guide is that our Python installation is intended to reside in `C:\Users\%USERNAME%\AppData\Roaming\Python313`. We do not recommend installing Python for all users in `C:\Program Files\Python313` due to access restrictions imposed by "Admin by Request" in RLDatix. Installing Python in the indicated directory will ensure that the core Python interpreter, along with its subsequently installed dependencies and site packages, reside in the same location.
-
 You can consider the setup complete once you reach four-fifths of the way through Optima's guide, at which point the Python Interpreter is configured. There is no need for configuring keyboard shortcuts in PyCharm, at least for now.
 
 With the help of Optima's guide, you should have the below list of software installed:
@@ -31,7 +29,8 @@ With the help of Optima's guide, you should have the below list of software inst
 - SourceTree, or an alternative Git client
 - GitHub Personal Access Token (PAT)
 - Python 3 installed for all users in `C:\Program Files\Python313` (Windows file path with backslashes)
-  - Note: When Python is installed only for the current user in the `AppData` directory instead of for all users in `C:\Program Files\Python313`, PyCharm frequently loses the configured Python interpreter, reverting to the default interpreter location in `C:\Program Files\Python313`, which causes disruptions in the development environment.
+  - Note: When Python is installed only for the current user in the `AppData` directory instead of for all users in `C:\Program Files\Python313`, PyCharm frequently loses the configured Python interpreter, reverting to the default interpreter location in Program Files, which causes disruptions in the development environment.
+  - Installing Python in the indicated directory will ensure that the core Python interpreter, along with its subsequently installed dependencies and site packages, reside in the same location.
 - PyCharm Community Edition
 - Python interpreter in PyCharm settings pointing at `C:/Program Files/Python313/python.exe` (Unix file path with forward slashes)
 - PyCharm plugin: Hyper RobotFramework Support
