@@ -85,6 +85,7 @@ As another option, use the Run feature in PyCharm to execute tests.
 ## Useful Links
 - [Engineering/dciq-automationtests](https://github.com/rld-engineering/dciq-automationtests): DCIQ repository for Robot Framework.
 - [Robot Framework](https://robotframework.org/): Community, resources, and user guide.
+- [Operating-system variables](https://robotframework.org/robotframework/2.9b2/RobotFrameworkUserGuide.html#operating-system-variables): Make the test data operating-system-agnostic.
 - [BuiltIn](https://robotframework.org/robotframework/latest/libraries/BuiltIn.html): An always available standard library with often needed keywords.
 - [Collections](https://robotframework.org/robotframework/latest/libraries/Collections.html): Library providing keywords for handling lists and dictionaries.
 - [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html): Library supporting browser automation.

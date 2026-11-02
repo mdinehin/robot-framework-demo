@@ -1,9 +1,7 @@
 *** Settings ***
-Documentation    This is an API client for DCIQ
-
+Documentation    This is an API client.
 Library    RequestsLibrary
-
-Resource	../../GlobalSettings.robot
+Resource	../../Libraries/Execution Profile.robot
 
 *** Keywords ***
 Set up API data

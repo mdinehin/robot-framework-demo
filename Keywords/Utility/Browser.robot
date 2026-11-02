@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    This file manages the browser initialization and user login process.
-Resource	../../GlobalSettings.robot
+Resource	../../Libraries/Execution Profile.robot
 
 *** Variables ***
 

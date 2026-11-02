@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    This file manages global variables by initializing default values.
 Library    SeleniumLibrary    timeout=10    implicit_wait=10.0
-Library    Libraries/ExecutionProfileData.py
+Library    ExecutionProfileData.py
 Library    Collections
 
 *** Variables ***
@@ -11,6 +11,7 @@ ${AdminUsername}
 ${AdminPassword}
 ${Browser}    Chrome
 ${NumberOfRetries}    0
+${RootDirectory}
 
 *** Keywords ***
 Set Execution Profile
