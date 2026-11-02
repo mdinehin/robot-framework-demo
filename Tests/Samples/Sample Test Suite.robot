@@ -12,26 +12,14 @@ Suite Setup    Set Execution Profile
 Test Teardown    Close All Browsers
 
 *** Variables ***
-${MenuItems}    ul[@id='toolkit-nav']/li/a/span
-${TopMenu}    //div[count(${MenuItems}) >= 4]
-${TopMenuItems}    //${MenuItems}
-${WasAnyPersonInvolvedCheckbox}    //input[@id='show_person']
-${RiskMatrixTable}    //table[contains(@class,'risk-matrix')]//tr[7]/td[5]
-${RadioValueAttribute}    1,5
-${SampleRadioButton}    //input[@value='${RadioValueAttribute}' and @type='radio']
-${LocaleSelect}    //select[@name='locale']
-${MatchingContactsButton}    //button[span[text()='Check for matching contacts']]
-${ContactListTitleRow}    //td[@class='title-row']
-${ContactListCancelButton}    //input[@value='Cancel']
-${FormHeading}    //div[@id='heading']/h2
-@{ListOfItems}    a1    b2    c3    d4
-${SubmitButton}    //button[span[text()='Submit']]
-${ValidationFailed}    //form[count(.//div[contains(text(),'mandatory fields completed')]) > 0]
 
 *** Test Cases ***
 Sample For Loop
     [Tags]    sample_for_loop
     [Documentation]    Log to console menu items from the top menu
+    ${MenuItems}=    Set Variable    ul[@id='toolkit-nav']/li/a/span
+    ${TopMenu}=    Set Variable    //div[count(${MenuItems}) >= 4]
+    ${TopMenuItems}=    Set Variable    //${MenuItems}
     Open Browser And Log In With [${AdminUsername}] And [${AdminPassword}]
     Wait Until Element Is Visible    ${TopMenu}
     @{TopMenuWebElements}=    Get WebElements    ${TopMenuItems}
@@ -49,6 +37,9 @@ Sample For Loop
 Sample Radio Button Click
     [Tags]    sample_radio_click
     [Documentation]    Click a radio button and verify if it is selected
+    ${RiskMatrixTable}=    Set Variable    //table[contains(@class,'risk-matrix')]//tr[7]/td[5]
+    ${RadioValueAttribute}=    Set Variable    1,5
+    ${SampleRadioButton}=    Set Variable    //input[@value='${RadioValueAttribute}' and @type='radio']
     Open Browser And Log In With [${AdminUsername}] And [${AdminPassword}]
     Go To    ${BaseUrl}#/risk-register/risks/new
     Wait Until Element Is Visible    ${RiskMatrixTable}
@@ -67,6 +58,7 @@ Sample Radio Button Click
 Sample Checkbox Click
     [Tags]    sample_checkbox_click
     [Documentation]    Select and unselect a checkbox, and verify its states
+    ${WasAnyPersonInvolvedCheckbox}=    Set Variable    //input[@id='show_person']
     Open Browser On [INC] Logout Form
     Checkbox Should Not Be Selected    ${WasAnyPersonInvolvedCheckbox}
     Select Checkbox    ${WasAnyPersonInvolvedCheckbox}
@@ -77,6 +69,7 @@ Sample Checkbox Click
 Sample Drop-Down Select
     [Tags]    sample_drop-down_select
     [Documentation]    Select a drop-down option and verify the selected value
+    ${LocaleSelect}=    Set Variable    //select[@name='locale']
     Create Webdriver    ${Browser}
     Go To    ${BaseUrl}
     Page Should Contain List    ${LocaleSelect}
@@ -91,6 +84,9 @@ Sample Drop-Down Select
 Sample Window Switch
     [Tags]    sample_window_switch
     [Documentation]    Switch to a new window tab and go back to the main tab
+    ${MatchingContactsButton}=    Set Variable    //button[span[text()='Check for matching contacts']]
+    ${ContactListTitleRow}=    Set Variable    //td[@class='title-row']
+    ${ContactListCancelButton}=    Set Variable    //input[@value='Cancel']
     Open Browser And Log In With [${AdminUsername}] And [${AdminPassword}]
     Go To    ${BaseUrl}capture/?action=linkcontactgeneral&module=INC&main_recordid=4&formtype=Edit&link_type=A&fromsearch=1
     Wait Until Element Is Visible    ${MatchingContactsButton}
@@ -109,6 +105,7 @@ Sample Window Switch
 Sample Text String Split
     [Tags]    sample_string_split
     [Documentation]    Split a text string
+    ${FormHeading}=    Set Variable    //div[@id='heading']/h2
     Open Browser On [INC] Logout Form
     Wait Until Element Is Visible    ${FormHeading}
     ${HeadingText}=    Get Text    ${FormHeading}
@@ -120,6 +117,7 @@ Sample Text String Split
 Sample Custom Library
     [Tags]    sample_custom_library
     [Documentation]    Use keywords from a custom python file
+    @{ListOfItems}=    Create List    a1    b2    c3    d4
     ${Timestamp}=    Get Epoch Unix Timestamp
     Log To Console    \nEpoch unix timestamp: ${Timestamp}
     Join List Of Items    ${ListOfItems}
