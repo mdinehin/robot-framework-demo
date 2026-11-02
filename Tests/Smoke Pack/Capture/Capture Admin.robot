@@ -1,8 +1,6 @@
 *** Settings ***
 Documentation    Test Suite - Capture Admin
-
 Resource	../../../Keywords/Utility/Browser.robot
-
 Test Teardown    Close All Browsers
 
 *** Variables ***
