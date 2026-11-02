@@ -10,7 +10,6 @@ ${BaseUrl}
 ${AdminUsername}
 ${AdminPassword}
 ${Browser}    Chrome
-${NumberOfRetries}    0    # Unused
 ${RootDirectory}    # ToDo: Set this variable on the command line with the --variable option.
 
 *** Keywords ***

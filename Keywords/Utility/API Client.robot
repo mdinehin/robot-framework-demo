@@ -21,13 +21,13 @@ Set Default Header Properties
     Set Global Variable    ${DefaultHeaderProperties}    ${HeaderProperties}
 
 Set Bearer Token
-    Set Execution Profile
     ${CookieName}=    Set Variable    datix.jwtToken
+    Set Execution Profile
     Open Browser And Log In With [${AdminUsername}] And [${AdminPassword}]
     ${Cookies}=    Get Cookies
     ${Cookies}=    Split String    ${Cookies}    ;${SPACE}
     ${Cookies}=    Evaluate    [item for item in ${Cookies} if '${CookieName}' in item]
     ${Cookie}=    Get From List    ${Cookies}    0
     ${Cookie}=    Split String    ${Cookie}    =
-    ${Token}=    Get From List    ${Cookie}    1
-    Set Global Variable    ${BearerToken}    ${Token}
+    ${CookieValue}=    Get From List    ${Cookie}    1
+    Set Global Variable    ${BearerToken}    ${CookieValue}
