@@ -57,7 +57,7 @@ Hande Post-Login Steps
         Run Keyword If    ${LoginCompleted}    Set Global Variable    ${LoginProcessCompleted}    True
 
         # Case: No page elements were identified within the specified timeframe
-        Handle Login Timeout    ${SecondsElapsed}    ${SecondsTimeout}
+        Handle Login Timeout If [${SecondsElapsed}] Exceeded [${SecondsTimeout}]
     END
 
 Handle Logged-In Table
@@ -85,8 +85,7 @@ Handle Completed Login Process
     ${TopMenuVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${TopMenuLogo}
     Return From Keyword    ${TopMenuVisible}
 
-Handle Login Timeout
+Handle Login Timeout If [${SecondsElapsed}] Exceeded [${SecondsTimeout}]
     [Tags]    robot:private
-    [Arguments]    ${SecondsElapsed}    ${SecondsTimeout}
     Run Keyword If    ${SecondsElapsed} >= ${SecondsTimeout}
     ...    Fail    Login succeeded, but there was an issue processing post-login steps.
