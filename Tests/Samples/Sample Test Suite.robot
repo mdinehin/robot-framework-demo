@@ -152,7 +152,3 @@ Sample POST Request
     Dictionary Should Contain Key    ${ParsedResponse}    id
     Dictionary Should Contain Key    ${ParsedResponse}    createdAt
     Log To Console    \nNew user record created successfully:\n${ParsedResponse}
-
-Test 1744806119
-    [Tags]    test
-    Post Login Actions

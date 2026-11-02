@@ -5,11 +5,15 @@ Resource	../../GlobalSettings.robot
 *** Variables ***
 
 *** Keywords ***
+Open Browser On [${CaptureModule}] Logout Form
+    ${LoginLink}=    Set Variable    //a[contains(@class,'logged-out-buttons') and text()='Login']
+    Create Webdriver    ${Browser}
+    Go To    ${BaseUrl}capture/?module=${CaptureModule}&form_id=0
+    Wait Until Element Is Visible    ${LoginLink}
+
 Open Browser And Log In With [${Username}] And [${Password}]
-    ${MenuLogo}=    Set Variable    //img[@alt='RLDatix']
     Log In With [${Username}] And [${Password}]
-    Handle Logged In Table
-    Wait Until Element Is Visible    ${MenuLogo}
+    Post Login Actions
 
 Log In With [${Username}] And [${Password}]
     [Tags]    robot:private
@@ -29,45 +33,53 @@ Log In With [${Username}] And [${Password}]
     Input Password    ${PasswordInput}    ${Password}
     Click Button    ${PasswordNextButton}
 
-Handle Logged In Table
-    [Tags]    robot:private
-    ${LoggedInTable}=    Set Variable    //table[@id='loggedin-table']
-    ${ProceedButton}=    Set Variable    //button[text()='Click here to proceed']
-    ${ElementStatus}=    Run Keyword And Return Status    Wait Until Page Contains Element    ${LoggedInTable}    timeout=2s
-    Run Keyword If    '${ElementStatus}' == 'True'    Click Button    ${ProceedButton}
-
-
-
-
-
-
 Post Login Actions
     ${SecondsElapsed}=    Set Variable    0
     ${SecondsTimeout}=    Set Variable    60
+    ${MenuLogo}=    Set Variable    //img[@alt='RLDatix']
     ${LoginProcessComplete}=    Set Variable    False
     WHILE    ${LoginProcessComplete} == False
         # Increment the timer
         Sleep    1s
         ${SecondsElapsed}    Evaluate    ${SecondsElapsed} + 1
 
+        # Case: Logged in table
+        Handle Logged In Table
+
+        # Case: User agreement modal
+        Handle User Agreement
+
+        # Case: Login message
+        Handle Login Message
+
+        # Case: The user has successfully completed the login process
+        ${MenuVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${MenuLogo}
+        Run Keyword If    ${MenuVisible}    Set Global Variable    ${LoginProcessComplete}    True
+
         # Case: No page elements were identified within the specified timeframe
-        Run Keyword If    ${SecondsElapsed} >= ${SecondsTimeout}
-        ...    Fail    Login succeeded, but there was an issue processing post-login actions.
-
-
-        # Case: The user has successfully logged in
-        # Run Keyword If    ${SecondsElapsed} >= ${SecondsTimeout}    Run Keywords
-        # ...    Set Global Variable    ${LoginProcessComplete}    True
-
-
-
-        Log To Console    \n${SecondsElapsed} >= ${SecondsTimeout}
-        Log To Console    \n${LoginProcessComplete}
+        Handle Login Timeout    ${SecondsElapsed}    ${SecondsTimeout}
     END
 
+Handle Login Timeout
+    [Tags]    robot:private
+    [Arguments]    ${SecondsElapsed}    ${SecondsTimeout}
+    Run Keyword If    ${SecondsElapsed} >= ${SecondsTimeout}
+    ...    Fail    Login succeeded, but there was an issue processing post-login actions.
 
-Open Browser On [${CaptureModule}] Logout Form
-    ${LoginLink}=    Set Variable    //a[contains(@class,'logged-out-buttons') and text()='Login']
-    Create Webdriver    ${Browser}
-    Go To    ${BaseUrl}capture/?module=${CaptureModule}&form_id=0
-    Wait Until Element Is Visible    ${LoginLink}
+Handle Logged In Table
+    [Tags]    robot:private
+    ${LoggedInTable}=    Set Variable    //table[@id='loggedin-table']
+    ${ProceedButton}=    Set Variable    //button[text()='Click here to proceed']
+    ${TableVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${LoggedInTable}
+    Run Keyword If    ${TableVisible}    Click Button    ${ProceedButton}
+
+Handle User Agreement
+    [Tags]    robot:private
+    ${UserAgreementButton}=    Set Variable    //button[contains(text(),'Accept') and ../h2[text()='User agreement']]
+    ${UserAgreementVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${UserAgreementButton}
+    Run Keyword If    ${UserAgreementVisible}    Click Button    ${UserAgreementButton}
+
+Handle Login Message
+    ${LoginMessageButton}=    Set Variable    //button[text()='Click here to proceed' and ../../div[@id='url' and @class='authForm__panel']]
+    ${LoginMessageVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${LoginMessageButton}
+    Run Keyword If    ${LoginMessageVisible}    Click Button    ${LoginMessageButton}
