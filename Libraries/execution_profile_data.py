@@ -5,7 +5,7 @@ import pandas as pd
 class ExecutionProfileData:
 
     """
-    This class retrieves execution profile data from a CSV file.
+    This class retrieves execution profile data for a specified environment from a CSV file.
     """
 
     @keyword

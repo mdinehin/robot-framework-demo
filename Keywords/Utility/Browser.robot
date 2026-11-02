@@ -81,9 +81,9 @@ Handle Login Message
 
 Handle Completed Login Process
     [Tags]    robot:private
-    ${MenuLogo}=    Set Variable    //img[@alt='RLDatix']
-    ${MenuVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${MenuLogo}
-    Return From Keyword    ${MenuVisible}
+    ${TopMenuLogo}=    Set Variable    //img[@alt='RLDatix']
+    ${TopMenuVisible}=    Run Keyword And Return Status    Element Should Be Visible    ${TopMenuLogo}
+    Return From Keyword    ${TopMenuVisible}
 
 Handle Login Timeout
     [Tags]    robot:private
