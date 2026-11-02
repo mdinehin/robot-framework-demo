@@ -18,7 +18,7 @@ To get started with this project, please refer to the Installation and Usage sec
 We hope you find this project useful and welcome any contributions or feedback to help us improve!
 
 ### Installation
-Set up your local development environment by following this Confluence guide created by Team Optima:
+Set up your local development environment by following this Confluence guide created by Team Optima. This page provides comprehensive instructions on configuring the development environment, including connecting to GitHub using a Personal Access Token (PAT), installing Python, and setting up PyCharm and its plugins to ensure a smooth workflow.
 
 [How-to setup environment](https://rldatix.atlassian.net/wiki/spaces/OP/pages/3223781706/How-to+setup+environment)
 
@@ -38,7 +38,7 @@ With the help of Optima's guide, you should have the below list of software inst
 
 ### Robot Framework and Dependencies
 
-It is crucial to execute all commands as an administrator. To execute Windows commands as an administrator, follow these steps:
+It is crucial to execute all commands as an administrator to ensure that the core Python interpreter, along with its subsequently installed dependencies and site packages, reside in the same location. To execute Windows commands as an administrator, follow these steps:
 1. Open the Start menu and type `cmd` or `Command Prompt` into the search bar.
 2. Right-click on `Command Prompt` and select `Run as administrator`.
 3. Confirm the action by clicking `Yes` in the User Account Control (UAC) window.
