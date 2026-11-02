@@ -4,7 +4,6 @@
 
 *** Settings ***
 Documentation    This sample test suite runs test cases from a CSV file using a test template.
-# pip install robotframework-datadriver
 Library    DataDriver    file=../../Resources/sample-data.csv    encoding=utf_8    dialect=excel
 Resource	../../GlobalSettings.robot
 Suite Setup    Set Execution Profile

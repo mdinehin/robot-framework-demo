@@ -50,6 +50,7 @@ Execute these commands to install Robot Framework and its dependencies:
 - pip install robotframework
 - pip install robotframework-requests
 - pip install robotframework-seleniumlibrary
+- pip install robotframework-datadriver
 - pip install pandas
 
 ## Build and Test
