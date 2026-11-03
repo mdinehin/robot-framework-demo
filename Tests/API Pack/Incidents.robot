@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Test Suite - API Incidents.
-Resource	../../Keywords/Utility/API Client.robot
+Resource	../../Keywords/Utility/API Helpers.robot
 Suite Setup    Set Default Request Headers
 
 *** Test Cases ***

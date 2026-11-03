@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This resource file is an API client.
+Documentation    This resource file provides a collection of helper methods designed to streamline the sending of API requests.
 Library    RequestsLibrary
 Library    SeleniumLibrary
 Library    String
