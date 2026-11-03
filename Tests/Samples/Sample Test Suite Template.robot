@@ -4,7 +4,7 @@
 
 *** Settings ***
 Documentation    This sample test suite runs all its test cases using a test template.
-Resource	../../GlobalSettings.robot
+Resource	../../Libraries/Execution Profile.robot
 Suite Setup    Set Execution Profile
 Test Template    Sample Template
 

@@ -5,7 +5,7 @@
 *** Settings ***
 Documentation    This sample test suite runs test cases from a CSV file using a test template.
 Library    DataDriver    file=../../Resources/sample-data.csv    encoding=utf_8    dialect=excel
-Resource	../../GlobalSettings.robot
+Resource	../../Libraries/Execution Profile.robot
 Suite Setup    Set Execution Profile
 Test Template    Sample Template
 

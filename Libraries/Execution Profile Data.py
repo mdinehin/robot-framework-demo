@@ -10,7 +10,7 @@ class ExecutionProfileData:
 
     @keyword
     def get_execution_profile_data(self, execution_profile):
-        df = pd.read_csv('Resources/ExecutionProfiles.csv')
+        df = pd.read_csv('Resources/execution-profiles.csv')
 
         # Get the row where the first column (Environment) matches the provided execution profile
         matched_row = df.loc[df['Environment'] == execution_profile]

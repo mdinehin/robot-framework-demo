@@ -1,16 +1,16 @@
 *** Settings ***
 Documentation    This resource file manages the execution profile data by initializing default values.
 Library    SeleniumLibrary    timeout=10    implicit_wait=10.0
-Library    execution_profile_data.py
+Library    Execution Profile Data.py
 Library    Collections
 
 *** Variables ***
 ${ExecutionProfile}    # Defines environment-specific settings and configuration values.
-${BaseUrl}    # Primary web address or root endpoint of the application under test.
+${BaseUrl}    # Primary web address or root endpoint of the environment under test.
 ${AdminUsername}
 ${AdminPassword}
+${RootDirectory}
 ${Browser}    Chrome
-${RootDirectory}    # ToDo: Set this variable on the command line with the --variable option.
 
 *** Keywords ***
 Set Execution Profile
