@@ -15,5 +15,5 @@ Default CSV Test With ID: ${Argument1}    z1    z2    # default arguments if CSV
 *** Keywords ***
 Sample Template
     [Arguments]    ${Argument1}    ${Argument2}
-    Log To Console    \nThis is a template keyword used by all test cases in the CSV file
+    Log To Console    ${\n}This is a template keyword used by all test cases in the CSV file
     Log To Console    Arguments: ${Argument1}, ${Argument2}

@@ -15,8 +15,8 @@ Test Teardown    Close All Browsers
 
 *** Test Cases ***
 Sample For Loop
+    [Documentation]    Log to console menu items from the top menu.
     [Tags]    sample_for_loop
-    [Documentation]    Log to console menu items from the top menu
     ${MenuItems}=    Set Variable    ul[@id='toolkit-nav']/li/a/span
     ${TopMenu}=    Set Variable    //div[count(${MenuItems}) >= 4]
     ${TopMenuItems}=    Set Variable    //${MenuItems}
@@ -35,8 +35,8 @@ Sample For Loop
     END
 
 Sample Radio Button Click
+    [Documentation]    Click a radio button and verify if it is selected.
     [Tags]    sample_radio_click
-    [Documentation]    Click a radio button and verify if it is selected
     ${RiskMatrixTable}=    Set Variable    //table[contains(@class,'risk-matrix')]//tr[7]/td[5]
     ${RadioValueAttribute}=    Set Variable    1,5
     ${SampleRadioButton}=    Set Variable    //input[@value='${RadioValueAttribute}' and @type='radio']
@@ -53,11 +53,11 @@ Sample Radio Button Click
     # Return True or False
     ${WebElement}=    Get WebElement    ${SampleRadioButton}
     ${RadioCheckedStatus}=    Execute Javascript    return arguments[0].checked    ARGUMENTS    ${WebElement}
-    Log To Console    \nQ: Is the radio button checked? A: ${RadioCheckedStatus}
+    Log To Console    ${\n}Q: Is the radio button checked? A: ${RadioCheckedStatus}
 
 Sample Checkbox Click
+    [Documentation]    Select and unselect a checkbox, and verify its states.
     [Tags]    sample_checkbox_click
-    [Documentation]    Select and unselect a checkbox, and verify its states
     ${WasAnyPersonInvolvedCheckbox}=    Set Variable    //input[@id='show_person']
     Open Browser On [INC] Logout Form
     Checkbox Should Not Be Selected    ${WasAnyPersonInvolvedCheckbox}
@@ -67,8 +67,8 @@ Sample Checkbox Click
     Checkbox Should Not Be Selected    ${WasAnyPersonInvolvedCheckbox}
 
 Sample Drop-Down Select
+    [Documentation]    Select a drop-down option and verify the selected value.
     [Tags]    sample_drop-down_select
-    [Documentation]    Select a drop-down option and verify the selected value
     ${LocaleSelect}=    Set Variable    //select[@name='locale']
     Create Webdriver    ${Browser}
     Go To    ${BaseUrl}
@@ -82,8 +82,8 @@ Sample Drop-Down Select
     Log To Console    ${AllValues}
 
 Sample Window Switch
+    [Documentation]    Switch to a new window tab and go back to the main tab.
     [Tags]    sample_window_switch
-    [Documentation]    Switch to a new window tab and go back to the main tab
     ${MatchingContactsButton}=    Set Variable    //button[span[text()='Check for matching contacts']]
     ${ContactListTitleRow}=    Set Variable    //td[@class='title-row']
     ${ContactListCancelButton}=    Set Variable    //input[@value='Cancel']
@@ -103,8 +103,8 @@ Sample Window Switch
     Element Text Should Be    ${ContactListTitleRow}    Matching contacts
 
 Sample Text String Split
+    [Documentation]    Split a text string.
     [Tags]    sample_string_split
-    [Documentation]    Split a text string
     ${FormHeading}=    Set Variable    //div[@id='heading']/h2
     Open Browser On [INC] Logout Form
     Wait Until Element Is Visible    ${FormHeading}
@@ -112,36 +112,35 @@ Sample Text String Split
     @{HeadingParts}=    Split String    ${HeadingText}    (    # split by the left parentheses character
     ${LeadingPart}=    Get From List    ${HeadingParts}    0
     @{AllParts}=    Split String    ${LeadingPart}             # leave the 2nd argument blank to split by whitespace
-    Log To Console    \nDCIQ form module: ${AllParts}[1]       # square brackets can be used as a Get From List alternative
+    Log To Console    ${\n}DCIQ form module: ${AllParts}[1]       # square brackets can be used as a Get From List alternative
 
 Sample Custom Library
+    [Documentation]    Use keywords from a custom python file.
     [Tags]    sample_custom_library
-    [Documentation]    Use keywords from a custom python file
     @{ListOfItems}=    Create List    a1    b2    c3    d4
-    ${Timestamp}=    Get Epoch Unix Timestamp
-    Log To Console    \nEpoch unix timestamp: ${Timestamp}
+    ${Timestamp}=    Get Current Timestamp
+    Log To Console    ${\n}Epoch unix timestamp: ${Timestamp}
     Join List Of Items    ${ListOfItems}
     Open Browser On [INC] Logout Form
     Use Selenium Library Instance
 
 Sample GET Request
-    [Documentation]    Get a random Chuck Norris joke from a public API endpoint
+    [Documentation]    Get a random Chuck Norris joke from a public API endpoint.
     [Tags]    sample_get_request
     Create Session    SessionBaseUrl    https://api.chucknorris.io/    disable_warnings=1    debug=1
     ${Response}=    GET On Session    SessionBaseUrl    jokes/random
     ${ParsedResponse}=    Set Variable    ${Response.json()}
     Dictionary Should Contain Key    ${ParsedResponse}    value
     ${RandomJoke}=    Get From Dictionary    ${ParsedResponse}    value
-    Log To Console    \n\nRandom joke:\n${RandomJoke}\n
-    # Alternative ways for accessing a dictionary
-    # Log To Console    \n\nRandom joke:\n${ParsedResponse['value']}\n
-    # Log To Console    \n\nRandom joke:\n${ParsedResponse}[value]\n
-    Log To Console    \n\nExecutionProfile: ${ExecutionProfile}
+    Log To Console    ${\n}${\n}Random joke:${\n}${RandomJoke}${\n}
+    # Alternative methods for accessing a dictionary
+    # Log To Console    ${\n}${\n}Random joke:${\n}${ParsedResponse['value']}${\n}
+    # Log To Console    ${\n}${\n}Random joke:${\n}${ParsedResponse}[value]${\n}
 
 Sample POST Request
-    [Documentation]    Post some random data to a public API endpoint
+    [Documentation]    Post some random data to a public API endpoint.
     [Tags]    sample_post_request
-    ${TestStamp}=    Get Epoch Unix Timestamp
+    ${TestStamp}=    Get Current Timestamp
     ${RequestBody}=    Create Dictionary    name=Random_Name_${TestStamp}    job=Random_Job_${TestStamp}
     Create Session    SessionBaseUrl    https://reqres.in/    disable_warnings=1    debug=1
     ${Response}=    POST On Session    SessionBaseUrl    api/users    json=${RequestBody}    expected_status=201
@@ -149,4 +148,4 @@ Sample POST Request
     ${ParsedResponse}=    Set Variable    ${Response.json()}
     Dictionary Should Contain Key    ${ParsedResponse}    id
     Dictionary Should Contain Key    ${ParsedResponse}    createdAt
-    Log To Console    \nNew user record created successfully:\n${ParsedResponse}
+    Log To Console    ${\n}New user record created successfully:${\n}${ParsedResponse}

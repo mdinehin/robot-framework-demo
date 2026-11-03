@@ -17,5 +17,5 @@ Sample Test C    c1    c2
 Sample Template
     [Arguments]    ${Argument1}    ${Argument2}
     # Note: Template tags [Tags] don't appear to work
-    Log To Console    \nThis is a template keyword used by all test cases in this suite
+    Log To Console    ${\n}This is a template keyword used by all test cases in this suite
     Log To Console    Arguments: ${Argument1}, ${Argument2}

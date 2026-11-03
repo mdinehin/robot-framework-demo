@@ -19,7 +19,7 @@ class Helpers:
     # the test starts may result in error "Cannot access execution context".
 
     @keyword
-    def get_epoch_unix_timestamp(self):
+    def get_current_timestamp(self):
         return int(time.time())
 
     @keyword
