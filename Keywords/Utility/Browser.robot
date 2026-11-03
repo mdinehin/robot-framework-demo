@@ -42,20 +42,15 @@ Hande Post-Login Steps
         # Increment the timer
         Sleep    1s
         ${SecondsElapsed}    Evaluate    ${SecondsElapsed} + 1
-
         # Case: Logged in table
         Handle Logged-In Table
-
         # Case: User agreement modal
         Handle User Agreement
-
         # Case: Login message
         Handle Login Message
-
         # Case: Login process complete
         ${LoginCompleted}=    Run Keyword And Return    Handle Completed Login Process
         Run Keyword If    ${LoginCompleted}    Set Global Variable    ${LoginProcessCompleted}    True
-
         # Case: No page elements were identified within the specified timeframe
         Handle Login Timeout If [${SecondsElapsed}] Exceeded [${SecondsTimeout}]
     END
