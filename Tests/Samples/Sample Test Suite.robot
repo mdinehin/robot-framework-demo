@@ -112,7 +112,7 @@ Sample Text String Split
     @{HeadingParts}=    Split String    ${HeadingText}    (    # split by the left parentheses character
     ${LeadingPart}=    Get From List    ${HeadingParts}    0
     @{AllParts}=    Split String    ${LeadingPart}             # leave the 2nd argument blank to split by whitespace
-    Log To Console    ${\n}DCIQ form module: ${AllParts}[1]       # square brackets can be used as a Get From List alternative
+    Log To Console    ${\n}Form module: ${AllParts}[1]       # square brackets can be used as a Get From List alternative
 
 Sample Custom Library
     [Documentation]    Use keywords from a custom python file.
