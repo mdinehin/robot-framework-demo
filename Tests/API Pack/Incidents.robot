@@ -12,6 +12,7 @@ Suite Setup    Set Default Request Headers
     ${Response}=    GET On Session
     ...    SessionBaseUrl    ${Endpoint}    params=${UrlParameters}    expected_status=201    allow_redirects=True
     ${IncidentRecords}=    Set Variable    ${Response.json()}
+    Should Not Be Empty    ${IncidentRecords}
     ${IncidentRecord}=    Get From List    ${IncidentRecords}    0
     Dictionary Should Contain Key    ${IncidentRecord}    id
     Dictionary Should Contain Key    ${IncidentRecord}    incidentStatus

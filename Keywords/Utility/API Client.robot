@@ -21,8 +21,11 @@ Set Bearer Token
     Open Browser And Log In With [${AdminUsername}] And [${AdminPassword}]
     ${Cookies}=    Get Cookies
     Close All Browsers
+    Should Not Be Empty    ${Cookies}
     ${Cookies}=    Split String    ${Cookies}    ;${SPACE}
+    Should Not Be Empty    ${Cookies}
     ${Cookies}=    Evaluate    [item for item in ${Cookies} if '${CookieName}' in item]
+    Should Not Be Empty    ${Cookies}
     ${Cookie}=    Get From List    ${Cookies}    0
     ${Cookie}=    Split String    ${Cookie}    =
     ${CookieValue}=    Get From List    ${Cookie}    1
