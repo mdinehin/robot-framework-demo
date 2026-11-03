@@ -5,8 +5,8 @@ Library    execution_profile_data.py
 Library    Collections
 
 *** Variables ***
-${ExecutionProfile}
-${BaseUrl}
+${ExecutionProfile}    # Defines environment-specific settings and configuration values.
+${BaseUrl}    # Primary web address or root endpoint of the application under test.
 ${AdminUsername}
 ${AdminPassword}
 ${Browser}    Chrome
