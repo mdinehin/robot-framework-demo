@@ -3,7 +3,7 @@
 # URL: https://www.udemy.com/course/robot-framework-with-python-selenium/
 
 *** Settings ***
-Documentation    This is a sample test suite.
+Documentation    Test Suite - This is a sample test suite.
 Library    RequestsLibrary
 Library    String
 Library    ../../Keywords/Utility/Helpers.py

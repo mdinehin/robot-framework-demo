@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This is an API client.
+Documentation    This resource file is an API client.
 Library    RequestsLibrary
 Library    SeleniumLibrary
 Library    String

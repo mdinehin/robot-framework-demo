@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Test Suite - API Incidents
+Documentation    Test Suite - API Incidents.
 Resource	../../Keywords/Utility/API Client.robot
 Suite Setup    Set Default Header Properties
 

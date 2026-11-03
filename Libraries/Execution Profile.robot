@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    This file manages the execution profile data by initializing default values.
+Documentation    This resource file manages the execution profile data by initializing default values.
 Library    SeleniumLibrary    timeout=10    implicit_wait=10.0
 Library    execution_profile_data.py
 Library    Collections
